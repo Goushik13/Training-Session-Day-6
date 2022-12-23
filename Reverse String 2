@@ -1,0 +1,10 @@
+inline void rs(char *s, size_t n){
+    for (char *e = s + n - 1 ; s < e ; *s ^= *e, *e ^= *s, *s++ ^= *e--);
+}
+
+char * reverseStr(char * s, int k){
+    char *f = s, *t = s;
+    for (; *s ; s - f == 2 * k ? rs(f, k), f = s : 0, s++);
+    s - t <= k ? rs(t, s - t) : rs(f, s - f >= k ? k : s - f);
+    return t;
+}
